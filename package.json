@@ -1,0 +1,40 @@
+{
+  "name": "lines-and-columns",
+  "version": "1.0.0",
+  "description": "Maps lines and columns to character offsets and back.",
+  "main": "dist/lines-and-columns.cjs.js",
+  "jsnext:main": "dist/lines-and-columns.es6.js",
+  "engines": {
+    "node": ">=4.0.0"
+  },
+  "scripts": {
+    "build": "rm -rf dist && rollup -c -f cjs -o dist/lines-and-columns.cjs.js && rollup -c -f es6 -o dist/lines-and-columns.es6.js",
+    "pretest": "npm run build",
+    "test": "mocha test.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/eventualbuddha/lines-and-columns.git"
+  },
+  "keywords": [
+    "lines",
+    "columns",
+    "parser"
+  ],
+  "author": "Brian Donovan <me@brian-donovan.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/eventualbuddha/lines-and-columns/issues"
+  },
+  "homepage": "https://github.com/eventualbuddha/lines-and-columns#readme",
+  "devDependencies": {
+    "babel": "^6.1.18",
+    "babel-plugin-transform-es2015-destructuring": "^6.1.18",
+    "babel-plugin-transform-es2015-modules-commonjs": "^6.2.0",
+    "babel-plugin-transform-flow-strip-types": "^6.1.18",
+    "babel-plugin-transform-strict-mode": "^6.2.0",
+    "mocha": "^2.3.4",
+    "rollup": "^0.21.0",
+    "rollup-plugin-babel": "^2.1.0"
+  }
+}
