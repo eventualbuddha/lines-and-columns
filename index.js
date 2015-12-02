@@ -7,23 +7,20 @@ export default class LinesAndColumns {
   constructor(string: string) {
     this.string = string;
 
-    const lineLengths = [];
-    let start = 0;
+    const offsets = [];
+    let offset = 0;
     while (true) {
-      let end = string.indexOf('\n', start);
-      if (end < 0) {
-        end = string.length;
-      } else {
-        end += '\n'.length;
-      }
-      lineLengths.push(end - start);
-      if (end === string.length) {
+      offsets.push(offset);
+      let next = string.indexOf('\n', offset);
+      if (next < 0) {
         break;
+      } else {
+        next += '\n'.length;
       }
-      start = end;
+      offset = next;
     }
 
-    this.lineLengths = lineLengths;
+    this.offsets = offsets;
   }
 
   locationForIndex(index: number): ?SourceLocation {
@@ -32,32 +29,36 @@ export default class LinesAndColumns {
     }
 
     let line = 0;
-    let column = index;
-    const lineLengths = this.lineLengths;
+    const offsets = this.offsets;
 
-    while (lineLengths[line] <= column && line + 1 < lineLengths.length) {
-      column -= lineLengths[line];
+    while (offsets[line + 1] <= index) {
       line++;
     }
 
+    const column = index - offsets[line];
     return ({ line, column }: SourceLocation);
   }
 
   indexForLocation(location: SourceLocation): ?number {
     let { line, column } = location;
 
-    if (line < 0 || line >= this.lineLengths.length) {
+    if (line < 0 || line >= this.offsets.length) {
       return null;
     }
 
-    if (column < 0 || column >= this.lineLengths[line]) {
+    if (column < 0 || column >= this._lengthOfLine(line)) {
       return null;
     }
 
-    let index = 0;
-    for (let i = line - 1; i >= 0; i--) {
-      index += this.lineLengths[i];
-    }
-    return index + column;
+    return this.offsets[line] + column;
+  }
+
+  /**
+   * @private
+   */
+  _lengthOfLine(line: number): number {
+    const offset = this.offsets[line];
+    const nextOffset = line === this.offsets.length - 1 ? this.string.length : this.offsets[line + 1];
+    return nextOffset - offset;
   }
 }
