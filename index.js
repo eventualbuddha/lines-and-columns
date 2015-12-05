@@ -3,21 +3,34 @@ type SourceLocation = {
   column: number
 };
 
+const LF = '\n';
+const CR = '\r';
+
 export default class LinesAndColumns {
   constructor(string: string) {
     this.string = string;
 
-    const offsets = [];
-    let offset = 0;
-    while (true) {
-      offsets.push(offset);
-      let next = string.indexOf('\n', offset);
-      if (next < 0) {
-        break;
-      } else {
-        next += '\n'.length;
+    const offsets = [0];
+
+    for (let offset = 0; offset < string.length;) {
+      switch (string[offset]) {
+        case LF:
+          offset += LF.length;
+          offsets.push(offset);
+          break;
+
+        case CR:
+          offset += CR.length;
+          if (string[offset] === LF) {
+            offset += LF.length;
+          }
+          offsets.push(offset);
+          break;
+
+        default:
+          offset++;
+          break;
       }
-      offset = next;
     }
 
     this.offsets = offsets;

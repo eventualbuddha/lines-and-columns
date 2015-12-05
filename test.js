@@ -56,4 +56,36 @@ describe('LinesAndColumns', () => {
     eq(map.indexForLocation({ line: 0, column: 2 }), null);
     eq(map.indexForLocation({ line: 0, column: -1 }), null);
   });
+
+  it('handles carriage returns as newline characters', () => {
+    const map = new LinesAndColumns('a\rb');
+    deq(map.locationForIndex(2), { line: 1, column: 0 });
+    deq(map.indexForLocation({ line: 1, column: 0 }), 2);
+  });
+
+  it('handles joined carriage return line feeds as newlines', () => {
+    const map = new LinesAndColumns('a\r\nb');
+    deq(map.locationForIndex(0), { line: 0, column: 0 });
+    deq(map.locationForIndex(1), { line: 0, column: 1 });
+    deq(map.locationForIndex(2), { line: 0, column: 2 });
+    deq(map.locationForIndex(3), { line: 1, column: 0 });
+    deq(map.indexForLocation({ line: 0, column: 0 }), 0);
+    deq(map.indexForLocation({ line: 0, column: 1 }), 1);
+    deq(map.indexForLocation({ line: 0, column: 2 }), 2);
+    deq(map.indexForLocation({ line: 1, column: 0 }), 3);
+  });
+
+  it('handles separate carriage returns and line feeds as independent newlines', () => {
+    const map = new LinesAndColumns('a\rb\nc');
+    deq(map.locationForIndex(0), { line: 0, column: 0 });
+    deq(map.locationForIndex(1), { line: 0, column: 1 });
+    deq(map.locationForIndex(2), { line: 1, column: 0 });
+    deq(map.locationForIndex(3), { line: 1, column: 1 });
+    deq(map.locationForIndex(4), { line: 2, column: 0 });
+    deq(map.indexForLocation({ line: 0, column: 0 }), 0);
+    deq(map.indexForLocation({ line: 0, column: 1 }), 1);
+    deq(map.indexForLocation({ line: 1, column: 0 }), 2);
+    deq(map.indexForLocation({ line: 1, column: 1 }), 3);
+    deq(map.indexForLocation({ line: 2, column: 0 }), 4);
+  });
 });
