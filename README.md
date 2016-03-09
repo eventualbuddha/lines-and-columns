@@ -20,8 +20,8 @@ const lines = new LinesAndColumns(
   border: 0
 }`);
 
-lines.locationForIndex(9);                       // { line: 1, column: 3 }
-lines.indexForLocation({ line: 1, column: 3 });  // 10
+lines.locationForIndex(9);                       // { line: 1, column: 1 }
+lines.indexForLocation({ line: 1, column: 2 });  // 10
 ```
 
 ## License
