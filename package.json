@@ -1,6 +1,6 @@
 {
   "name": "lines-and-columns",
-  "version": "1.0.2",
+  "version": "1.1.0",
   "description": "Maps lines and columns to character offsets and back.",
   "main": "dist/lines-and-columns.cjs.js",
   "jsnext:main": "dist/lines-and-columns.es6.js",
