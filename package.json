@@ -8,9 +8,11 @@
     "node": ">=4.0.0"
   },
   "scripts": {
+    "flow": "flow check --all",
     "build": "rm -rf dist && rollup -c -f cjs -o dist/lines-and-columns.cjs.js && rollup -c -f es6 -o dist/lines-and-columns.es6.js",
     "pretest": "npm run build",
-    "test": "mocha test.js"
+    "test": "mocha test.js",
+    "prepublish": "npm run flow && npm run build"
   },
   "files": [
     "dist"

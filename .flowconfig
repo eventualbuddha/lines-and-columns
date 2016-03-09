@@ -1,0 +1,13 @@
+[ignore]
+.*/rollup\.config.*\.js
+.*/dist/.*
+.*/test.*
+.*/node_modules/.*
+
+[include]
+index.js
+
+[libs]
+
+[options]
+munge_underscores=true

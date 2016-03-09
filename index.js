@@ -7,10 +7,13 @@ const LF = '\n';
 const CR = '\r';
 
 export default class LinesAndColumns {
-  constructor(string: string) {
-    this.string = string;
+  _string: string;
+  _offsets: Array<number>;
 
-    const offsets = [0];
+  constructor(string: string) {
+    this._string = string;
+
+    let offsets = [0];
 
     for (let offset = 0; offset < string.length;) {
       switch (string[offset]) {
@@ -33,29 +36,29 @@ export default class LinesAndColumns {
       }
     }
 
-    this.offsets = offsets;
+    this._offsets = offsets;
   }
 
   locationForIndex(index: number): ?SourceLocation {
-    if (index < 0 || index >= this.string.length) {
+    if (index < 0 || index >= this._string.length) {
       return null;
     }
 
     let line = 0;
-    const offsets = this.offsets;
+    let offsets = this._offsets;
 
     while (offsets[line + 1] <= index) {
       line++;
     }
 
-    const column = index - offsets[line];
+    let column = index - offsets[line];
     return ({ line, column }: SourceLocation);
   }
 
   indexForLocation(location: SourceLocation): ?number {
     let { line, column } = location;
 
-    if (line < 0 || line >= this.offsets.length) {
+    if (line < 0 || line >= this._offsets.length) {
       return null;
     }
 
@@ -63,15 +66,15 @@ export default class LinesAndColumns {
       return null;
     }
 
-    return this.offsets[line] + column;
+    return this._offsets[line] + column;
   }
 
   /**
    * @private
    */
   _lengthOfLine(line: number): number {
-    const offset = this.offsets[line];
-    const nextOffset = line === this.offsets.length - 1 ? this.string.length : this.offsets[line + 1];
+    let offset = this._offsets[line];
+    let nextOffset = line === this._offsets.length - 1 ? this._string.length : this._offsets[line + 1];
     return nextOffset - offset;
   }
 }
