@@ -31,13 +31,13 @@
   },
   "homepage": "https://github.com/eventualbuddha/lines-and-columns#readme",
   "devDependencies": {
-    "babel": "^6.1.18",
-    "babel-plugin-transform-es2015-destructuring": "^6.1.18",
-    "babel-plugin-transform-es2015-modules-commonjs": "^6.2.0",
-    "babel-plugin-transform-flow-strip-types": "^6.1.18",
-    "babel-plugin-transform-strict-mode": "^6.2.0",
-    "mocha": "^2.3.4",
-    "rollup": "^0.21.0",
-    "rollup-plugin-babel": "^2.1.0"
+    "babel": "^6.5.2",
+    "babel-plugin-transform-es2015-destructuring": "^6.6.5",
+    "babel-plugin-transform-es2015-modules-commonjs": "^6.7.0",
+    "babel-plugin-transform-flow-strip-types": "^6.7.0",
+    "babel-plugin-transform-strict-mode": "^6.6.5",
+    "mocha": "^2.4.5",
+    "rollup": "^0.25.4",
+    "rollup-plugin-babel": "^2.4.0"
   }
 }
