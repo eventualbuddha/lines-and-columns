@@ -40,7 +40,7 @@ export default class LinesAndColumns {
   }
 
   locationForIndex(index: number): ?SourceLocation {
-    if (index < 0 || index >= this._string.length) {
+    if (index < 0 || index > this._string.length) {
       return null;
     }
 

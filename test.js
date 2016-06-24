@@ -24,6 +24,11 @@ describe('LinesAndColumns', function() {
     eq(map.locationForIndex(-1), null);
   });
 
+  it('maps indexes at the end', function() {
+    const map = new LinesAndColumns('');
+    deq(map.locationForIndex(0), { line: 0, column: 0 });
+  });
+
   it('maps indexes after the end to null', function() {
     const map = new LinesAndColumns('');
     eq(map.locationForIndex(1), null);
