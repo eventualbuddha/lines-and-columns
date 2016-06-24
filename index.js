@@ -62,7 +62,7 @@ export default class LinesAndColumns {
       return null;
     }
 
-    if (column < 0 || column >= this._lengthOfLine(line)) {
+    if (column < 0 || column > this._lengthOfLine(line)) {
       return null;
     }
 

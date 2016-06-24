@@ -48,6 +48,7 @@ describe('LinesAndColumns', function() {
     const map = new LinesAndColumns('ab\ncd');
     eq(map.indexForLocation({ line: 0, column: 2 }), 2);
     eq(map.indexForLocation({ line: 1, column: 0 }), 3);
+    eq(map.indexForLocation({ line: 1, column: 2 }), 5);
   });
 
   it('maps non-existent line to null', function() {
@@ -58,7 +59,7 @@ describe('LinesAndColumns', function() {
 
   it('maps non-existent columns to null', function() {
     const map = new LinesAndColumns('a\nb');
-    eq(map.indexForLocation({ line: 0, column: 2 }), null);
+    eq(map.indexForLocation({ line: 0, column: 3 }), null);
     eq(map.indexForLocation({ line: 0, column: -1 }), null);
   });
 
