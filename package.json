@@ -1,6 +1,5 @@
 {
   "name": "lines-and-columns",
-  "version": "1.1.1",
   "description": "Maps lines and columns to character offsets and back.",
   "main": "dist/lines-and-columns.js",
   "jsnext:main": "dist/lines-and-columns.mjs",
@@ -10,14 +9,15 @@
     "build": "rollup -c",
     "pretest": "npm run build",
     "test": "mocha",
-    "prepublish": "npm run flow && npm run build"
+    "prepublish": "npm run flow && npm run build",
+    "semantic-release": "semantic-release pre && npm publish && semantic-release post"
   },
   "files": [
     "dist"
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/eventualbuddha/lines-and-columns.git"
+    "url": "https://github.com/eventualbuddha/lines-and-columns.git"
   },
   "keywords": [
     "lines",
@@ -41,8 +41,15 @@
     "babel-plugin-transform-es2015-shorthand-properties": "^6.8.0",
     "babel-plugin-transform-flow-strip-types": "^6.8.0",
     "babel-plugin-transform-strict-mode": "^6.8.0",
+    "cz-conventional-changelog": "^1.1.6",
     "mocha": "^2.5.3",
     "rollup": "^0.33.0",
-    "rollup-plugin-babel": "^2.6.1"
+    "rollup-plugin-babel": "^2.6.1",
+    "semantic-release": "^4.3.5"
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
   }
 }
