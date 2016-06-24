@@ -1,4 +1,4 @@
-const LinesAndColumns = require('./dist/lines-and-columns.cjs');
+const LinesAndColumns = require('./');
 const deq = require('assert').deepEqual;
 const eq = require('assert').strictEqual;
 
