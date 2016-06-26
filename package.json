@@ -6,7 +6,7 @@
   "scripts": {
     "flow": "flow check --all",
     "prebuild": "rm -rf dist",
-    "build": "rollup -c",
+    "build": "rollup -c && cp index.js.flow dist/lines-and-columns.js.flow",
     "pretest": "npm run build",
     "test": "mocha",
     "prepublish": "npm run flow && npm run build",

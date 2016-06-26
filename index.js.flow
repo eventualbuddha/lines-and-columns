@@ -1,0 +1,10 @@
+type SourceLocation = {
+  line: number;
+  column: number;
+};
+
+declare class LinesAndColumns {
+  constructor(string: string): void;
+  locationForIndex(index: number): ?SourceLocation;
+  indexForLocation(location: SourceLocation): ?number;
+}
