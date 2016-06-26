@@ -1,3 +1,5 @@
+/* @flow */
+
 type SourceLocation = {
   line: number,
   column: number

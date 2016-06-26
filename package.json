@@ -4,7 +4,7 @@
   "main": "dist/lines-and-columns.js",
   "jsnext:main": "dist/lines-and-columns.mjs",
   "scripts": {
-    "flow": "flow check --all",
+    "flow": "flow check",
     "prebuild": "rm -rf dist",
     "build": "rollup -c && cp index.js.flow dist/lines-and-columns.js.flow",
     "pretest": "npm run build",
