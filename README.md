@@ -1,4 +1,4 @@
-# lines-and-columns
+# lines-and-columns [![Build Status](https://travis-ci.org/eventualbuddha/lines-and-columns.svg?branch=master)](https://travis-ci.org/eventualbuddha/lines-and-columns)
 
 Maps lines and columns to character offsets and back. This is useful for parsers
 and other text processors that deal in character ranges but process text with
