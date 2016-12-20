@@ -1,6 +1,5 @@
-const LinesAndColumns = require('./');
-const deq = require('assert').deepEqual;
-const eq = require('assert').strictEqual;
+import { deepEqual as deq, strictEqual as eq } from 'assert';
+import LinesAndColumns from '../src';
 
 describe('LinesAndColumns', function() {
   it('maps index 0 to line 0, column 0', function() {

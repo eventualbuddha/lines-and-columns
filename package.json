@@ -4,12 +4,13 @@
   "main": "dist/lines-and-columns.js",
   "jsnext:main": "dist/lines-and-columns.mjs",
   "scripts": {
-    "flow": "flow check",
+    "lint": "tslint --config tslint.json --project tsconfig.json --type-check",
+    "lint-fix": "tslint --config tslint.json --project tsconfig.json --type-check --fix",
     "prebuild": "rm -rf dist",
-    "build": "rollup -c && cp index.js.flow dist/lines-and-columns.js.flow",
+    "build": "./script/build",
     "pretest": "npm run build",
     "test": "mocha",
-    "prepublish": "npm run flow && npm run build",
+    "prepublish": "npm run lint && npm run build",
     "semantic-release": "semantic-release pre && npm publish && semantic-release post"
   },
   "files": [
@@ -31,26 +32,12 @@
   },
   "homepage": "https://github.com/eventualbuddha/lines-and-columns#readme",
   "devDependencies": {
-    "babel": "^6.5.2",
-    "babel-plugin-syntax-class-properties": "^6.13.0",
-    "babel-plugin-transform-class-properties": "^6.19.0",
-    "babel-plugin-transform-es2015-block-scoping": "^6.21.0",
-    "babel-plugin-transform-es2015-classes": "^6.18.0",
-    "babel-plugin-transform-es2015-destructuring": "^6.19.0",
-    "babel-plugin-transform-es2015-modules-commonjs": "^6.18.0",
-    "babel-plugin-transform-es2015-shorthand-properties": "^6.18.0",
-    "babel-plugin-transform-flow-strip-types": "^6.21.0",
-    "babel-plugin-transform-strict-mode": "^6.18.0",
-    "cz-conventional-changelog": "^1.2.0",
-    "flow-bin": "^0.37.3",
+    "@types/mocha": "^2.2.34",
+    "@types/node": "^6.0.52",
     "mocha": "^3.2.0",
-    "rollup": "^0.37.0",
-    "rollup-plugin-babel": "^2.7.1",
-    "semantic-release": "^6.3.2"
-  },
-  "config": {
-    "commitizen": {
-      "path": "./node_modules/cz-conventional-changelog"
-    }
+    "semantic-release": "^6.3.2",
+    "ts-node": "^1.7.2",
+    "tslint": "^4.1.1",
+    "typescript": "^2.1.4"
   }
 }
