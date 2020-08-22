@@ -39,6 +39,6 @@
     "semantic-release": "^6.3.2",
     "ts-node": "^1.7.2",
     "tslint": "^4.1.1",
-    "typescript": "^2.1.4"
+    "typescript": "^4.0.2"
   }
 }
