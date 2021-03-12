@@ -35,7 +35,7 @@
   "devDependencies": {
     "@types/mocha": "^2.2.34",
     "@types/node": "^6.0.52",
-    "mocha": "^3.2.0",
+    "mocha": "^8.3.2",
     "semantic-release": "^6.3.2",
     "ts-node": "^1.7.2",
     "tslint": "^4.1.1",
