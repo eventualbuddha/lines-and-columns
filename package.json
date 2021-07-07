@@ -33,7 +33,7 @@
   },
   "homepage": "https://github.com/eventualbuddha/lines-and-columns#readme",
   "devDependencies": {
-    "@types/mocha": "^2.2.34",
+    "@types/mocha": "^8.2.3",
     "@types/node": "^6.0.52",
     "mocha": "^3.2.0",
     "semantic-release": "^6.3.2",
