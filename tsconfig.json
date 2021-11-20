@@ -1,18 +1,14 @@
 {
+  "include": ["src", "test"],
+  "exclude": [],
   "compilerOptions": {
-    "strictNullChecks": true,
-    "module": "commonjs",
-    "typeRoots": ["node_modules/@types"],
-    "declaration": true,
-    "lib": ["es2015"],
-    "experimentalDecorators": true,
+    "strict": true,
+    "lib": ["es2018"],
+    "noEmit": true,
     "noUnusedParameters": true,
     "noUnusedLocals": true,
     "noImplicitReturns": true,
-    "noFallthroughCasesInSwitch": true
-  },
-  "exclude": [
-    "node_modules",
-    "dist/**/*"
-  ]
+    "noFallthroughCasesInSwitch": true,
+    "skipLibCheck": true
+  }
 }
