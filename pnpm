@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+
+exec npx pnpm@6 $@

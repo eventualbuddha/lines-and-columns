@@ -1,4 +1,4 @@
-# lines-and-columns [![Build Status](https://travis-ci.org/eventualbuddha/lines-and-columns.svg?branch=master)](https://travis-ci.org/eventualbuddha/lines-and-columns)
+# lines-and-columns
 
 Maps lines and columns to character offsets and back. This is useful for parsers
 and other text processors that deal in character ranges but process text with
@@ -13,15 +13,19 @@ $ npm install [--save] lines-and-columns
 ## Usage
 
 ```js
-import LinesAndColumns from 'lines-and-columns';
+import { LinesAndColumns } from 'lines-and-columns'
 
 const lines = new LinesAndColumns(
-`table {
+  `table {
   border: 0
-}`);
+}`
+)
 
-lines.locationForIndex(9);                       // { line: 1, column: 1 }
-lines.indexForLocation({ line: 1, column: 2 });  // 10
+lines.locationForIndex(9)
+// { line: 1, column: 1 }
+
+lines.indexForLocation({ line: 1, column: 2 })
+// 10
 ```
 
 ## License

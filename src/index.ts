@@ -1,77 +1,80 @@
 export type SourceLocation = {
-  line: number,
+  line: number
   column: number
-};
+}
 
-const LF = '\n';
-const CR = '\r';
+const LF = '\n'
+const CR = '\r'
 
-export default class LinesAndColumns {
-  private string: string;
-  private offsets: Array<number>;
+export class LinesAndColumns {
+  private string: string
+  private offsets: Array<number>
 
   constructor(string: string) {
-    this.string = string;
+    this.string = string
 
-    let offsets = [0];
+    const offsets = [0]
 
-    for (let offset = 0; offset < string.length;) {
+    for (let offset = 0; offset < string.length; ) {
       switch (string[offset]) {
         case LF:
-          offset += LF.length;
-          offsets.push(offset);
-          break;
+          offset += LF.length
+          offsets.push(offset)
+          break
 
         case CR:
-          offset += CR.length;
+          offset += CR.length
           if (string[offset] === LF) {
-            offset += LF.length;
+            offset += LF.length
           }
-          offsets.push(offset);
-          break;
+          offsets.push(offset)
+          break
 
         default:
-          offset++;
-          break;
+          offset++
+          break
       }
     }
 
-    this.offsets = offsets;
+    this.offsets = offsets
   }
 
   locationForIndex(index: number): SourceLocation | null {
     if (index < 0 || index > this.string.length) {
-      return null;
+      return null
     }
 
-    let line = 0;
-    let offsets = this.offsets;
+    let line = 0
+    const offsets = this.offsets
 
     while (offsets[line + 1] <= index) {
-      line++;
+      line++
     }
 
-    let column = index - offsets[line];
-    return { line, column };
+    const column = index - offsets[line]
+    return { line, column }
   }
 
   indexForLocation(location: SourceLocation): number | null {
-    let { line, column } = location;
+    const { line, column } = location
 
     if (line < 0 || line >= this.offsets.length) {
-      return null;
+      return null
     }
 
     if (column < 0 || column > this.lengthOfLine(line)) {
-      return null;
+      return null
     }
 
-    return this.offsets[line] + column;
+    return this.offsets[line] + column
   }
 
   private lengthOfLine(line: number): number {
-    let offset = this.offsets[line];
-    let nextOffset = line === this.offsets.length - 1 ? this.string.length : this.offsets[line + 1];
-    return nextOffset - offset;
+    const offset = this.offsets[line]
+    const nextOffset =
+      line === this.offsets.length - 1
+        ? this.string.length
+        : this.offsets[line + 1]
+    return nextOffset - offset
   }
 }
