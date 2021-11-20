@@ -18,15 +18,19 @@
   "license": "MIT",
   "author": "Brian Donovan <brian@donovans.cc>",
   "type": "module",
-  "exports": "./build/index.js",
+  "main": "./build/index.cjs",
+  "exports": {
+    "import": "./build/index.mjs",
+    "require": "./build/index.cjs"
+  },
   "types": "./build/index.d.ts",
   "files": [
     "build"
   ],
   "scripts": {
     "prebuild": "rm -rf build",
-    "build": "tsc --build tsconfig.build.json",
-    "build:watch": "tsc --build tsconfig.build.json --watch",
+    "build": "tsc --project tsconfig.build.json && mv build/index.js build/index.mjs && tsc --project tsconfig.build.json --module commonjs && mv build/index.js build/index.cjs",
+    "build:watch": "tsc --project tsconfig.build.json --watch",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
     "prepublishOnly": "npm run lint && npm run build",
