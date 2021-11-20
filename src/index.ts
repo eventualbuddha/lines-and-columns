@@ -6,7 +6,7 @@ export type SourceLocation = {
 const LF = '\n';
 const CR = '\r';
 
-export default class LinesAndColumns {
+class LinesAndColumns {
   private string: string;
   private offsets: Array<number>;
 
@@ -75,3 +75,6 @@ export default class LinesAndColumns {
     return nextOffset - offset;
   }
 }
+
+export { LinesAndColumns };
+export default LinesAndColumns;
