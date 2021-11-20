@@ -18,7 +18,7 @@
   "license": "MIT",
   "author": "Brian Donovan <brian@donovans.cc>",
   "type": "module",
-  "exports": "./build/index.mjs",
+  "exports": "./build/index.js",
   "types": "./build/index.d.ts",
   "files": [
     "build"
