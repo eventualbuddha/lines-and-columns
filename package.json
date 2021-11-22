@@ -28,9 +28,11 @@
     "build"
   ],
   "scripts": {
-    "prebuild": "rm -rf build",
-    "build": "tsc --project tsconfig.build.json && mv build/index.js build/index.mjs && tsc --project tsconfig.build.json --module commonjs && mv build/index.js build/index.cjs",
-    "build:watch": "tsc --project tsconfig.build.json --watch",
+    "type-check": "tsc",
+    "type-check:watch": "tsc --watch",
+    "clean": "rm -rf build",
+    "build": "./script/build.js",
+    "build:watch": "./script/build.js --watch",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
     "prepublishOnly": "npm run lint && npm run build",
