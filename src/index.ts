@@ -1,4 +1,4 @@
-export type SourceLocation = {
+export interface SourceLocation {
   line: number
   column: number
 }
@@ -7,12 +7,11 @@ const LF = '\n'
 const CR = '\r'
 
 export class LinesAndColumns {
-  private string: string
-  private offsets: Array<number>
+  private readonly length: number
+  private readonly offsets: ReadonlyArray<number>
 
   constructor(string: string) {
-    this.string = string
-
+    this.length = string.length
     const offsets = [0]
 
     for (let offset = 0; offset < string.length; ) {
@@ -40,7 +39,7 @@ export class LinesAndColumns {
   }
 
   locationForIndex(index: number): SourceLocation | null {
-    if (index < 0 || index > this.string.length) {
+    if (index < 0 || index > this.length) {
       return null
     }
 
@@ -73,7 +72,7 @@ export class LinesAndColumns {
     const offset = this.offsets[line]
     const nextOffset =
       line === this.offsets.length - 1
-        ? this.string.length
+        ? this.length
         : this.offsets[line + 1]
     return nextOffset - offset
   }
