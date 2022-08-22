@@ -3,9 +3,6 @@ export interface SourceLocation {
   column: number
 }
 
-const LF = '\n'
-const CR = '\r'
-
 export class LinesAndColumns {
   private readonly length: number
   private readonly offsets: ReadonlyArray<number>
@@ -65,9 +62,7 @@ export class LinesAndColumns {
   private lengthOfLine(line: number): number {
     const offset = this.offsets[line]
     const nextOffset =
-      line === this.offsets.length - 1
-        ? this.length
-        : this.offsets[line + 1]
+      line === this.offsets.length - 1 ? this.length : this.offsets[line + 1]
     return nextOffset - offset
   }
 }
