@@ -12,27 +12,21 @@ export class LinesAndColumns {
 
   constructor(string: string) {
     this.length = string.length
-    const offsets = [0]
 
-    for (let offset = 0; offset < string.length; ) {
-      switch (string[offset]) {
-        case LF:
-          offset += LF.length
-          offsets.push(offset)
-          break
+    const byLineAndEOL = /(\r\n|\r|\n)/
+    const lineAndEOLLengths = string
+      .split(byLineAndEOL)
+      .map((value) => value.length)
+    // splits into: ['line0', '\r\n', 'line1', '\n', 'line2', ...]
+    // and stores the lengths
 
-        case CR:
-          offset += CR.length
-          if (string[offset] === LF) {
-            offset += LF.length
-          }
-          offsets.push(offset)
-          break
-
-        default:
-          offset++
-          break
-      }
+    const offsets: number[] = [0]
+    for (let i = 1; i < lineAndEOLLengths.length; i += 2) {
+      // iterate just the EOLs
+      const previousLinesTotal = offsets[offsets.length - 1] || 0
+      const currentLineLength = lineAndEOLLengths[i - 1] || 0
+      const currEOLLength = lineAndEOLLengths[i]
+      offsets.push(previousLinesTotal + currentLineLength + currEOLLength)
     }
 
     this.offsets = offsets
